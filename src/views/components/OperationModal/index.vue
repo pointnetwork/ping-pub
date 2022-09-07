@@ -325,7 +325,7 @@ export default {
         return this.address
       }
       if (this.accounts) {
-        const chain = "POINT"
+        const chain = "Point"
         const selectedAddress = this.accounts?.address.find(x => x.chain === chain)
         return selectedAddress?.addr
       }
