@@ -503,7 +503,7 @@ export default class ChainFetch {
   }
 
   static async fetchTokenQuote(symbol) {
-    return ChainFetch.fetchCoinMarketCap(`/api/price/POINT_USDT`)
+    return ChainFetch.fetchCoinMarketCap('/api/price/POINT_USDT')
   }
 
   // Simulate Execution of tx
