@@ -325,7 +325,7 @@ export default {
         return this.address
       }
       if (this.accounts) {
-        const chain = 'Point'
+        const chain = "this.$store.state.chains.selected.chain_name"
         const selectedAddress = this.accounts?.address.find(x => x.chain === chain)
         return selectedAddress?.addr
       }
