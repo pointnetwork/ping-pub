@@ -112,12 +112,12 @@
                     v-b-tooltip.hover.top="token.denom"
                     class="text-right"
                   >{{ formatToken(token) }}</span>
-                  <small class="text-right">{{ currency }}{{ formatNumber(token.currency) }}</small>
+                  <small class="text-right">{{ currency }}{{ formatNumber('POINT') }}</small>
                 </div>
               </div>
               <!--/ tokens -->
               <div class="text-right border-top pt-1">
-                <h2>Total: {{ currency }}{{ formatNumber(assetTable.currency) }}</h2>
+                <h2>Total: {{ currency }}{{ formatNumber('POINT') }}</h2>
               </div>
             </b-col>
           </b-row>
