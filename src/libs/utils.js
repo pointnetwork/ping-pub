@@ -115,7 +115,7 @@ export function addressEnCode(prefix, pubkey) {
 
 export function getUserCurrency() {
   const currency = localStorage.getItem('currency')
-  return currency || 'usd'
+  return 'usd'
 }
 
 export function setUserCurrency(currency) {
