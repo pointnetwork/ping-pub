@@ -723,7 +723,7 @@ export default {
       const userCurrency = getUserCurrency()
       const quote = this.$store.state.chains.quotes[d2]
       if (quote) {
-        const price = 0.3968
+        const price = quote[userCurrency]
         return parseFloat((qty * price).toFixed(2))
       }
       return 0
