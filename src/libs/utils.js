@@ -118,6 +118,7 @@ export function getUserCurrency() {
   if (currency) {
     return currency
   }
+  setUserCurrency('usd')
   return 'usd'
 }
 
