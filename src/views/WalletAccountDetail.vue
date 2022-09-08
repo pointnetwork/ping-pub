@@ -680,9 +680,6 @@ export default {
               this.$set(this.quotes, 'POINT_USDT', quote)
             })
           }
-          chainAPI.fetchTokenQuote(symbol).then(quote => {
-              this.$set(this.quotes, 'POINT_USDT', quote)
-          })
         })
       })
       this.$http.getStakingReward(this.address).then(res => {
