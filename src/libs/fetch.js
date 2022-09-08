@@ -150,6 +150,9 @@ export default class ChainFetch {
     if (this.config.chain_name === 'evmos') {
       return this.get('/evmos/inflation/v1/inflation_rate').then(data => Number(data.inflation_rate / 100 || 0))
     }
+    if (this.config.chain_name === 'point') {
+      return this.get('/point/inflation/v1/inflation_rate').then(data => Number(data.inflation_rate / 100 || 0))
+    }
     if (this.config.chain_name === 'echelon') {
       return this.get('/echelon/inflation/v1/inflation_rate').then(data => Number(data.inflation_rate / 100 || 0))
     }
@@ -216,6 +219,24 @@ export default class ChainFetch {
         })
       })
       await this.get('/evmos/inflation/v1/total_supply').then(data => {
+        Object.entries(data).forEach(x => {
+          const k = x[0]
+          const v = x[1]
+          result[k] = v
+        })
+      })
+      return result
+    }
+    if (this.config.chain_name === 'point') {
+      const result = await this.get('/point/inflation/v1/params').then(data => data.params)
+      await this.get('/point/inflation/v1/period').then(data => {
+        Object.entries(data).forEach(x => {
+          const k = x[0]
+          const v = x[1]
+          result[k] = v
+        })
+      })
+      await this.get('/point/inflation/v1/total_supply').then(data => {
         Object.entries(data).forEach(x => {
           const k = x[0]
           const v = x[1]
