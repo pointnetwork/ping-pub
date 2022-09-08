@@ -2,7 +2,7 @@
   <div>
     <b-card
       v-if="pingVals && pingVals.length > 0"
-      title="❤️ Stake with Point Network ❤️"
+      title="❤️ Helping Point Network By Staking ❤️"
       class="overflow-auto"
     >
       <b-table
