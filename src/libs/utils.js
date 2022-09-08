@@ -117,8 +117,9 @@ export function getUserCurrency() {
   const currency = localStorage.getItem('currency')
   if (currency){
     return currency
+  }else{
+    return 'usd'
   }
-  return 'usd'
 }
 
 export function setUserCurrency(currency) {
