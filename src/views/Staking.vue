@@ -345,7 +345,7 @@ export default {
   },
   computed: {
     pingVals() {
-      return this.list.filter(x => x.description.moniker === 'point-validator-main')
+      return this.list.filter(x => x.description.identity === '94EFE192B2C52424')
     },
     list() {
       const tab = this.selectedStatus === 'active' ? this.validators : this.inactiveValidators
