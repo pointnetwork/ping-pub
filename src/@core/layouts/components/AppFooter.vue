@@ -4,7 +4,7 @@
       Powered By
       <b-link
         class="ml-25 font-weight-bolder"
-        href="#"
+        href="https://pointnetwork.io/"
         target="_blank"
       >Point Network</b-link>
     </span>
