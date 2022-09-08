@@ -118,9 +118,7 @@ export function getUserCurrency() {
   if (currency) {
     return currency
   }
-  else{
-    return 'usd'
-  }
+  return 'usd'
 }
 
 export function setUserCurrency(currency) {
