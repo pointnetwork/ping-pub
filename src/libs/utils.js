@@ -118,7 +118,7 @@ export function getUserCurrency() {
   if (currency) {
     return currency
   }
-  setUserCurrency('usd')
+  localStorage.setItem('currency', 'usd')
   return 'usd'
 }
 
