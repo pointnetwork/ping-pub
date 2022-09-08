@@ -524,7 +524,8 @@ export default class ChainFetch {
   }
 
   static async fetchTokenQuote(symbol) {
-    return ChainFetch.fetchCoinMarketCap(`/api/price/${symbol}_USDT`)
+    let symbol = 'POINT_USDT'
+    return ChainFetch.fetchCoinMarketCap(`/api/price/${symbol}`)
   }
 
   // Simulate Execution of tx
