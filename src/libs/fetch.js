@@ -524,7 +524,7 @@ export default class ChainFetch {
   }
 
   static async fetchTokenQuote(symbol) {
-    let symbol = 'POINT_USDT'
+    this.symbol = 'POINT_USDT'
     return ChainFetch.fetchCoinMarketCap(`/api/price/${symbol}`)
   }
 
