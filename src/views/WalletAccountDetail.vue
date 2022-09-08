@@ -677,9 +677,12 @@ export default {
           const symbol = formatTokenDenom(x.denom)
           if (!this.quotes[symbol] && symbol.indexOf('/') === -1) {
             chainAPI.fetchTokenQuote(symbol).then(quote => {
-              this.$set(this.quotes, symbol, quote)
+              this.$set(this.quotes, 'POINT_USDT', quote)
             })
           }
+          chainAPI.fetchTokenQuote(symbol).then(quote => {
+              this.$set(this.quotes, 'POINT_USDT', quote)
+          })
         })
       })
       this.$http.getStakingReward(this.address).then(res => {
