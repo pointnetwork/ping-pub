@@ -527,10 +527,7 @@ export default {
     getPrice(denom) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
-      if (!quote) {
-        return parseFloat('0.3914').toFixed(2)
-      }
-      return quote
+      return quote ? quote[this.currency2] || 0 : 0
     },
     getChanges(denom) {
       const d2 = this.formatDenom(denom)
