@@ -503,7 +503,7 @@ export default {
     formatTotalChange(v) {
       return numberWithCommas(v)
     },
-    formatAmount(v, denom = 'uatom', format = true) {
+    formatAmount(v, denom = 'apoint', format = true) {
       if (!v) return ''
       const denom2 = (denom.startsWith('ibc') ? this.ibcDenom[denom] : denom)
       return formatTokenAmount(v, 2, denom2, format)
@@ -527,32 +527,33 @@ export default {
     getPrice(denom) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
-      return quote ? quote[this.currency2] || 0.3812 : 0.3812
+      console.log(quote)
+      return parseFloat('0.3812').toFixed(2)
     },
     getChanges(denom) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
       if (quote) {
         const price = 0.11774999999999997
-        return price || 0
+        return price
       }
       return 0
     },
     formatChanges(denom) {
-      const price = this.getChanges(denom)
+      const price = this.getPrice(denom)
       if (price > 0) {
         return `+${parseFloat(price.toFixed(2))}%`
       }
-      return '0'
+      return parseFloat('0.3812').toFixed(2)
     },
     formatPrice(denom) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
       if (quote) {
-        const price = quote[this.currency2]
+        const price = parseFloat('0.3812').toFixed(2)
         return price
       }
-      return 0
+      return parseFloat('0.3812').toFixed(2)
     },
     formatBalance(v) {
       let total = 0
