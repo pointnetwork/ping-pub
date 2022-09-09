@@ -519,12 +519,12 @@ export default class ChainFetch {
 
   // CoinMarketCap
   static async fetchCoinMarketCap(url) {
-    const host = 'https://price.ping.pub'
+    const host = 'https://sale.pointnetwork.io'
     return fetch(host + url).then(response => response.json())
   }
 
   static async fetchTokenQuote(symbol) {
-    return ChainFetch.fetchCoinMarketCap(`/quote/${symbol}`)
+    return ChainFetch.fetchCoinMarketCap('/api/price/POINT_USDT')
   }
 
   // Simulate Execution of tx
