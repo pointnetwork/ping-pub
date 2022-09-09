@@ -405,7 +405,7 @@ export function formatTokenDenom(tokenDenom) {
     }
     return denom.length > 10 ? `${denom.substring(0, 7).toUpperCase()}..${denom.substring(denom.length - 3)}` : denom.toUpperCase()
   }
-  return ''
+  return 'POINT'
 }
 
 export function getUnitAmount(amount, tokenDenom) {
@@ -429,7 +429,7 @@ export function numberWithCommas(x) {
   return parts.join('.')
 }
 
-export function formatTokenAmount(tokenAmount, decimals = 2, tokenDenom = 'uatom', format = true) {
+export function formatTokenAmount(tokenAmount, decimals = 2, tokenDenom = 'apoint', format = true) {
   const denom = tokenDenom.denom_trace ? tokenDenom.denom_trace.base_denom : tokenDenom
   let amount = 0
   let exp = String(denom).startsWith('gravity') ? 18 : 6
@@ -454,9 +454,9 @@ export function isTestnet() {
     || window.location.search.indexOf('testnet') > -1)
 }
 
-export function formatToken(token = 'POINT', IBCDenom = {}, decimals = 2, withDenom = true) {
+export function formatToken(token, IBCDenom = {}, decimals = 2, withDenom = true) {
   if (token) {
-    const denom = IBCDenom[token.denom] || token.denom
+    const denom = IBCDenom[token.denom] || 'POINT'
     if (withDenom) {
       return `${formatTokenAmount(token.amount, decimals, denom)} ${formatTokenDenom(denom)}`
     }
