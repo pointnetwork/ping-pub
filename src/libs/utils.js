@@ -460,7 +460,7 @@ export function formatToken(token2, IBCDenom = {}, decimals = 2, withDenom = tru
   if (token2) {
     const denom = IBCDenom[token2.denom] || token2.denom
     if (withDenom) {
-      return `${formattokenAmount(token2.amount, decimals, denom)} ${formatTokenDenom(denom)}`
+      return `${formatTokenAmount(token2.amount, decimals, denom)} ${formatTokenDenom(denom)}`
     }
     return formatTokenAmount(token2.amount, decimals, denom)
   }
