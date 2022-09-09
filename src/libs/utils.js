@@ -389,7 +389,7 @@ export function formatTokenDenom(tokenDenom) {
   if (tokenDenom && tokenDenom.code === undefined) {
     let denom = tokenDenom.denom_trace ? tokenDenom.denom_trace.base_denom : tokenDenom
     const chains = getLocalChains()
-    const selected = localStorage.getItem('selected_chain').toUpperCase()
+    const selected = localStorage.getItem('selected_chain')
     const selChain = chains[selected]
     const nativeAsset = selChain.assets.find(a => (a.base === denom))
     if (nativeAsset) {
@@ -405,7 +405,7 @@ export function formatTokenDenom(tokenDenom) {
     }
     return denom.length > 10 ? `${denom.substring(0, 7).toUpperCase()}..${denom.substring(denom.length - 3)}` : denom.toUpperCase()
   }
-  return 'POINT'
+  return ''
 }
 
 export function getUnitAmount(amount, tokenDenom) {
@@ -429,7 +429,7 @@ export function numberWithCommas(x) {
   return parts.join('.')
 }
 
-export function formatTokenAmount(tokenAmount, decimals = 2, tokenDenom = 'apoint', format = true) {
+export function formatTokenAmount(tokenAmount, decimals = 2, tokenDenom = 'POINT', format = true) {
   const denom = tokenDenom.denom_trace ? tokenDenom.denom_trace.base_denom : tokenDenom
   let amount = 0
   let exp = String(denom).startsWith('gravity') ? 18 : 6
@@ -456,7 +456,7 @@ export function isTestnet() {
 
 export function formatToken(token, IBCDenom = {}, decimals = 2, withDenom = true) {
   if (token) {
-    const denom = IBCDenom[token.denom] || 'POINT'
+    const denom = 'POINT'
     if (withDenom) {
       return `${formatTokenAmount(token.amount, decimals, denom)} ${formatTokenDenom(denom)}`
     }
