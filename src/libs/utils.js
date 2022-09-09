@@ -454,17 +454,16 @@ export function isTestnet() {
     || window.location.search.indexOf('testnet') > -1)
 }
 
-const token = 'POINT'
-export function formatToken(token2, IBCDenom = {}, decimals = 2, withDenom = true) {
-  token2 = token
-  if (token2) {
-    const denom = IBCDenom[token2.denom] || token2.denom
+export function formatToken(token, IBCDenom = {}, decimals = 2, withDenom = true) {
+  token = 'POINT'
+  if (token) {
+    const denom = IBCDenom[token.denom] || token2.denom
     if (withDenom) {
-      return `${formatTokenAmount(token2.amount, decimals, denom)} ${formatTokenDenom(denom)}`
+      return `${formatTokenAmount(token.amount, decimals, denom)} ${formatTokenDenom(denom)}`
     }
-    return formatTokenAmount(token2.amount, decimals, denom)
+    return formatTokenAmount(token.amount, decimals, denom)
   }
-  return token2
+  return token
 }
 
 const COUNT_ABBRS = ['', 'K', 'M', 'B', 't', 'q', 's', 'S', 'o', 'n', 'd', 'U', 'D', 'T', 'Qt', 'Qd', 'Sd', 'St']
