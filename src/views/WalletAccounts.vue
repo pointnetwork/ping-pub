@@ -513,7 +513,7 @@ export default {
     },
     formatCurrency(amount, denom) {
       const qty = this.formatAmount(amount, denom, false)
-      return parseFloat((qty * 0.3812).toFixed(2))
+      return parseFloat((qty * 0.3812))
     },
     priceColor(denom) {
       const d2 = this.formatDenom(denom)
@@ -527,7 +527,7 @@ export default {
     getPrice(denom) {
       const d2 = this.formatDenom(denom)
       const quote = this.$store.state.chains.quotes[d2]
-      return parseFloat('0.3812').toFixed(2)
+      return parseFloat('0.3812')
     },
     getChanges(denom) {
       const d2 = this.formatDenom(denom)
@@ -543,7 +543,7 @@ export default {
       if (price > 0) {
         return `+${parseFloat(price.toFixed(2))}%`
       }
-      return parseFloat('0.3812').toFixed(2)
+      return parseFloat('0.3812')
     },
     formatPrice(denom) {
       const d2 = this.formatDenom(denom)
@@ -552,7 +552,7 @@ export default {
         const price = parseFloat('0.3812').toFixed(2)
         return price
       }
-      return parseFloat('0.3812').toFixed(2)
+      return parseFloat('0.3812')
     },
     formatBalance(v) {
       let total = 0
