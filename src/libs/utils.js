@@ -455,6 +455,7 @@ export function isTestnet() {
 }
 
 export function formatToken(token='POINT', IBCDenom = {}, decimals = 2, withDenom = true) {
+  if (token) {
     const denom = IBCDenom[token.denom] || token.denom
     if (withDenom) {
       return `${formatTokenAmount(token.amount, decimals, denom)} ${formatTokenDenom(denom)}`
