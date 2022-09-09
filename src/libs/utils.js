@@ -454,10 +454,8 @@ export function isTestnet() {
     || window.location.search.indexOf('testnet') > -1)
 }
 
-export function formatToken(token, IBCDenom = {}, decimals = 2, withDenom = true) {
-  token = 'POINT'
-  if (token) {
-    const denom = IBCDenom[token.denom] || token2.denom
+export function formatToken(token='POINT', IBCDenom = {}, decimals = 2, withDenom = true) {
+    const denom = IBCDenom[token.denom] || token.denom
     if (withDenom) {
       return `${formatTokenAmount(token.amount, decimals, denom)} ${formatTokenDenom(denom)}`
     }
