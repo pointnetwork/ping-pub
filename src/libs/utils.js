@@ -389,7 +389,7 @@ export function formatTokenDenom(tokenDenom) {
   if (tokenDenom && tokenDenom.code === undefined) {
     let denom = tokenDenom.denom_trace ? tokenDenom.denom_trace.base_denom : tokenDenom
     const chains = getLocalChains()
-    const selected = localStorage.getItem('selected_chain')
+    const selected = localStorage.getItem('selected_chain').toUpperCase()
     const selChain = chains[selected]
     const nativeAsset = selChain.assets.find(a => (a.base === denom))
     if (nativeAsset) {
@@ -454,7 +454,7 @@ export function isTestnet() {
     || window.location.search.indexOf('testnet') > -1)
 }
 
-export function formatToken(token = 'point', IBCDenom = {}, decimals = 2, withDenom = true) {
+export function formatToken(token = 'POINT', IBCDenom = {}, decimals = 2, withDenom = true) {
   if (token) {
     const denom = IBCDenom[token.denom] || token.denom
     if (withDenom) {
