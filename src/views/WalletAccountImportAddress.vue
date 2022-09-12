@@ -383,7 +383,7 @@ export default {
       debug: '',
       device: 'keplr',
       address: '',
-      hdpath: "m/44'/118/0'/0/0",
+      hdpath: "m/44'/60/0'/0/0",
       name: '',
       options: {},
       required,
