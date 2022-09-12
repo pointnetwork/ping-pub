@@ -117,7 +117,7 @@
                     v-model="hdpath"
                     class="mt-1"
                     name="hdpath"
-                    placeholder="m/44'/118/0'/0/0"
+                    placeholder="m/44'/60/0'/0/0"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>
                 </validation-provider>
