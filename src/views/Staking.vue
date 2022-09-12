@@ -62,7 +62,7 @@
             style="max-width:320px;"
           >
             <div v-if="data.item.operator_address === 'pointvaloper1v2a2jpuzeq9xss2sk3kummfllrcaemf5wuaq7e'">
-              <img v-bind:src="'/logos/point-logo.png'" alt="Point" width=8% hight=auto />
+              <img v-bind:src="'/logos/point-logo.png'" alt="Point" width="40em" hight=auto />
             </div>
           </b-media>
         </template>
@@ -183,7 +183,7 @@
             style="max-width:320px;"
           >
             <div v-if="data.item.operator_address === 'pointvaloper1v2a2jpuzeq9xss2sk3kummfllrcaemf5wuaq7e'">
-              <img v-bind:src="'/logos/point-logo.png'" alt="Point" width=8% hight=auto />
+              <img v-bind:src="'/logos/point-logo.png'" alt="Point" width="40em" hight=auto />
             </div>
           </b-media>
         </template>
