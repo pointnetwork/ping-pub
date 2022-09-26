@@ -186,8 +186,9 @@ export default {
       return '-'
     },
     getPrice(denom) {
-      const quote = this.$store.state.chains.quotes[denom]
-      return quote ? quote[this.currency2] : 0
+      const denom2 = 'point-network'
+      const quote = this.$store.state.chains.quotes[denom2]
+      return quote ? quote.usd : 0
     },
     toCurrency(token) {
       let profit = 0
