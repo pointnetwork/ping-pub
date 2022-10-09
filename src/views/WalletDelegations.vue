@@ -139,7 +139,7 @@ export default {
         const d = {
           validator: {
             logo: x.chain.logo,
-            validator: x.delegation.validator_address,
+            validator: getStakingValidatorOperator(x.chain.chain_name, x.delegation.validator_address, -1),
             moniker: this.findMoniker(x.chain.chain_name, x.delegation.validator_address),
             chain: x.chain.chain_name,
           },
@@ -181,7 +181,7 @@ export default {
     findReward(delegator, validator) {
       const reward = this.rewards[delegator]?.rewards.find(x => x.validator_address === validator) || null
       if (reward) {
-        return tokenFormatter(reward.reward, this.ibcDenoms)
+        return tokenFormatter(reward.reward, this.denoms)
       }
       return '-'
     },
