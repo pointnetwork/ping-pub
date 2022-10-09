@@ -199,15 +199,36 @@ export default {
       return numberWithCommas(profit.toFixed(2))
     },
     init() {
-      this.$http.getStakingReward(this.address).then(res => {
-        this.reward = res
-      })
-      this.$http.getStakingDelegations(this.address).then(res => {
-        this.delegations = res.delegation_responses || res
-      })
-      this.$http.getStakingUnbonding(this.address).then(res => {
-        this.unbonding = res.unbonding_responses || res
-      })
+      this.accounts = getLocalAccounts()
+      const chains = getLocalChains()
+      if (this.accounts) {
+        Object.keys(this.accounts).forEach(acc => {
+          this.accounts[acc].address.forEach(add => {
+            const chain = chains[add.chain]
+            this.$http.getStakingReward(add.addr, chain).then(res => {
+              this.rewards[add.addr] = res
+              res.total.forEach(t => {
+                if (t.denom.startsWith('ibc')) {
+                  this.$http.getIBCDenomTrace(t.denom, chain).then(denom => {
+                    this.$set(this.ibcDenoms, t.denom, denom)
+                  })
+                }
+              })
+            })
+            this.$http.getStakingDelegations(add.addr, chain).then(res => {
+              if (res.delegation_responses && res.delegation_responses.length > 0) {
+                const delegation = res.delegation_responses.map(x => {
+                  const x2 = x
+                  x2.keyname = acc
+                  x2.chain = chain
+                  return x2
+                })
+                this.delegations = this.delegations.concat(delegation)
+              }
+            }).catch(() => {})
+          })
+        })
+      }
     },
   },
 }
