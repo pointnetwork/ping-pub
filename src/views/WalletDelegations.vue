@@ -179,7 +179,7 @@ export default {
       return addr
     },
     findReward(delegator, validator) {
-      const reward = this.rewards[delegator]?.rewards.find(x => x.validator_address === validator)
+      const reward = this.reward.rewards.find(x => x.validator_address === x.delegation.validator_address) || null
       if (reward) {
         return tokenFormatter(reward.reward, this.ibcDenoms)
       }
