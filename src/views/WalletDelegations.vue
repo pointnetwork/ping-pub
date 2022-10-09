@@ -88,7 +88,7 @@ import {
 } from 'bootstrap-vue'
 import Ripple from 'vue-ripple-directive'
 import {
-  formatToken, getCachedValidators, getLocalAccounts, getLocalChains, getStakingValidatorOperator, getUserCurrency, getUserCurrencySign, numberWithCommas, tokenFormatter,
+  formatToken, getCachedValidators, getLocalAccounts, getLocalChains, getUserCurrency, getUserCurrencySign, numberWithCommas, tokenFormatter,
 } from '@/libs/utils'
 import FeatherIcon from '@/@core/components/feather-icon/FeatherIcon.vue'
 
@@ -110,7 +110,7 @@ export default {
       selectedValidator: '',
       accounts: [],
       delegations: [],
-      rewards: {},
+      reward: [],
       operationModalType: '',
       ibcDenoms: {},
       currency: getUserCurrencySign(),
@@ -139,7 +139,7 @@ export default {
         const d = {
           validator: {
             logo: x.chain.logo,
-            validator: getStakingValidatorOperator(x.chain.chain_name, x.delegation.validator_address, -1),
+            validator: x.delegation.validator_address,
             moniker: this.findMoniker(x.chain.chain_name, x.delegation.validator_address),
             chain: x.chain.chain_name,
           },
@@ -199,36 +199,15 @@ export default {
       return numberWithCommas(profit.toFixed(2))
     },
     init() {
-      this.accounts = getLocalAccounts()
-      const chains = getLocalChains()
-      if (this.accounts) {
-        Object.keys(this.accounts).forEach(acc => {
-          this.accounts[acc].address.forEach(add => {
-            const chain = chains[add.chain]
-            this.$http.getStakingReward(add.addr, chain).then(res => {
-              this.rewards[add.addr] = res
-              res.total.forEach(t => {
-                if (t.denom.startsWith('ibc')) {
-                  this.$http.getIBCDenomTrace(t.denom, chain).then(denom => {
-                    this.$set(this.ibcDenoms, t.denom, denom)
-                  })
-                }
-              })
-            })
-            this.$http.getStakingDelegations(add.addr, chain).then(res => {
-              if (res.delegation_responses && res.delegation_responses.length > 0) {
-                const delegation = res.delegation_responses.map(x => {
-                  const x2 = x
-                  x2.keyname = acc
-                  x2.chain = chain
-                  return x2
-                })
-                this.delegations = this.delegations.concat(delegation)
-              }
-            }).catch(() => {})
-          })
-        })
-      }
+      this.$http.getStakingReward(this.address).then(res => {
+        this.reward = res
+      })
+      this.$http.getStakingDelegations(this.address).then(res => {
+        this.delegations = res.delegation_responses || res
+      })
+      this.$http.getStakingUnbonding(this.address).then(res => {
+        this.unbonding = res.unbonding_responses || res
+      })
     },
   },
 }
