@@ -179,8 +179,11 @@ export default {
       return addr
     },
     findReward(delegator, validator) {
-      const reward = this.rewards[delegator]?.rewards.find(x => x.validator_address === validator)
-      return tokenFormatter(reward.reward, this.ibcDenoms)
+      const reward = this.rewards[delegator]?.rewards.find(x => x.validator_address === validator) || null
+      if (reward) {
+        return tokenFormatter(reward.reward, this.ibcDenoms)
+      }
+      return '-'
     },
     getPrice(denom) {
       const denom2 = 'point-network'
