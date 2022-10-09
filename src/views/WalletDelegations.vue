@@ -110,7 +110,7 @@ export default {
       selectedValidator: '',
       accounts: [],
       delegations: [],
-      reward: [],
+      reward: {},
       operationModalType: '',
       ibcDenoms: {},
       currency: getUserCurrencySign(),
