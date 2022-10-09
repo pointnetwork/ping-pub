@@ -110,7 +110,7 @@ export default {
       selectedValidator: '',
       accounts: [],
       delegations: [],
-      reward: {},
+      rewards: {},
       operationModalType: '',
       ibcDenoms: {},
       currency: getUserCurrencySign(),
@@ -181,7 +181,7 @@ export default {
     findReward(delegator, validator) {
       const reward = this.rewards[delegator]?.rewards.find(x => x.validator_address === validator) || null
       if (reward) {
-        return tokenFormatter(reward.reward, this.denoms)
+        return tokenFormatter(reward.reward, this.ibcDenoms)
       }
       return '-'
     },
