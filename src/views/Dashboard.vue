@@ -268,7 +268,7 @@ export default {
       if (key) {
         const accounts = getLocalAccounts() || {}
         const account = Object.entries(accounts)
-          .map(v => ({ wallet: v[0], address: v[1].address.find(x => x.chain === this.$store.state.chains.selected.chain_name) }))
+          .map(v => ({ wallet: v[0], address: v[1].address.find(x => x.chain === 'point') }))
           .filter(v => v.address)
           .find(x => x.wallet === key)
         if (account) {
@@ -304,15 +304,9 @@ export default {
     })
 
     const conf = this.$http.getSelectedConfig()
-    if (conf.excludes && conf.excludes.indexOf('mint') > -1) {
-      this.inflation = '-'
-    } else {
-      this.$http.getMintingInflation().then(res => {
-        this.inflation = `${percent(res)}%`
-      }).catch(() => {
-        this.inflation = '-'
-      })
-    }
+    this.$http.getMintingInflation().then(res => {
+      this.inflation = `${percent(res)}%`
+    })
 
     this.$http.getGovernanceListByStatus(2).then(res => {
       this.proposals = res.proposals
