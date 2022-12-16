@@ -12,7 +12,7 @@
     "assets": [{
         "base": "upoint",
         "symbol": "POINT",
-        "exponent": 18,
+        "exponent": "18",
         "coingecko_id": "", 
         "logo": "/logos/point-logo.png"
     }],
